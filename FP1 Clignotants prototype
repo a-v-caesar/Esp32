@@ -1,0 +1,33 @@
+//FP1 Clignotants
+#include <Arduino.h>
+
+int led_clign = 13; //Led clignotants sur pin13 (changer si il en faut une autre)
+int bouton = 7; //Bouton sur pin 7
+
+void setup()
+{
+  pinMode(led_clign, OUTPUT);
+  pinMode(bouton, INPUT);
+}
+
+void loop()
+{
+  if(bouton == 1) //Bouton enfoncé
+  {
+    for(int i =0; i<5; i++) //Clignotement pendant 5 secondes
+    {
+      digitalWrite(led_clign, HIGH); //Led allumées
+      delay(500); //Attente pendant 0.5s
+      digitalWrite(led_clign, LOW); //Led éteintes
+      delay(500); //Attente pendant 0.5s
+    }
+  }
+
+
+
+
+
+
+
+
+
