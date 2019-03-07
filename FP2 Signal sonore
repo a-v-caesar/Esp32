@@ -1,0 +1,19 @@
+//FP2 Signal sonore
+#include <Arduino.h>
+
+int klaxon = 12; //Avertisseur sonore sur pin12 (changer si il en faut une autre)
+int activer_son = 6; //Bouton sur pin 6
+
+void setup()
+{
+  pinMode(klaxon, OUTPUT);
+  pinMode(activer_son, INPUT);
+}
+
+void loop()
+{
+  while(activer_son == 1) //Bouton enfoncé
+  {
+    digitalWrite(klaxon, HIGH); //Klaxon en marche
+  }
+
