@@ -1,0 +1,22 @@
+//FP3 Eclairage
+#include <Arduino.h>
+
+int eclairage = 14; //Eclairage sur pin 14 (changer si il en faut une autre)
+int lumiere = analogRead(A0);
+int seuil_lum = ; //Seuil de luminosité
+
+void setup()
+{
+  pinMode(eclairage, OUTPUT);
+}
+
+void loop()
+{
+  if(lumiere < seuil_lum) //Quand la luminosité est faible
+  {
+    digitalWrite(lumiere, HIGH); //Allumer la lumière
+  }
+  else //Quand la luminosité est forte
+  {
+    digitalWrite(lumiere, LOW); //Eteindre la lumière
+  }
