@@ -1,8 +1,8 @@
 //FP1 Clignotants
 #include <Arduino.h>
 
-int led_clign = 13; //Led clignotants sur pin13 (changer si il en faut une autre)
-int bouton = 7; //Bouton sur pin 7
+const int led_clign = 13; //Led clignotants sur pin13 (changer si il en faut une autre)
+const int bouton = 7; //Bouton sur pin 7
 
 void setup()
 {
