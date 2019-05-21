@@ -1,7 +1,7 @@
 //FP3 Eclairage
 #include <Arduino.h>
 
-const int eclairage = 14; //Eclairage sur pin 14 (changer si il en faut une autre)
+const int eclairage = 14; //Eclairage sur pin 14
 const int lumiere = analogRead(A0);
 const int seuil_lum = ; //Seuil de luminosité
 
