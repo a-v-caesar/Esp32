@@ -1,27 +1,44 @@
 //FP1 Clignotants
 #include <Arduino.h>
 
-#define led_clign = 13; //Led clignotants sur pin13 (changer si il en faut une autre)
-#define bouton = 7; //Bouton sur pin 7
+#define led_clign 13 //Led clignotants sur pin13 (changer si il en faut une autre)
+#define bouton 7 //Bouton sur pin 7
+bool sam;
+long valeur,Val;
 
 void setup()
 {
   pinMode(led_clign, OUTPUT);
-  pinMode(bouton, INPUT);
+  pinMode(bouton, INPUT_PULLUP);
+  Serial.begin(9600);
+
+ sam = 0;
+ valeur = 0;
 }
 
 void loop()
 {
-  if(bouton == 1) //Bouton enfoncé
+  
+  
+  if(digitalRead(bouton) == 0) //Bouton enfoncé
   {
-    for(int i =0; i<5; i++) //Clignotement pendant 5 secondes
-    {
-      digitalWrite(led_clign, HIGH); //Led allumées
-      delay(500); //Attente pendant 0.5s
-      digitalWrite(led_clign, LOW); //Led éteintes
-      delay(500); //Attente pendant 0.5s
-    }
+    valeur=millis();
+    Val=millis();
+    digitalWrite(led_clign, HIGH); //Led allumées
+    sam=1;
   }
+  if(sam == 1){
+        if((millis()-valeur)> 500)
+        {
+          digitalWrite(led_clign,!digitalRead(led_clign)); //Led allumées
+          valeur = millis();
+        }
+        if((millis()-Val)>5000)
+        {
+          sam = 0;
+        }
+  }
+ }
 
 
 
