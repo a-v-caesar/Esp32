@@ -1,36 +1,23 @@
 //FP2 Signal sonore
 #include <Arduino.h>
 
-#define klaxon = 12; //Avertisseur sonore sur pin12 (changer si il en faut une autre)
-#define activer_son = 6; //Bouton sur pin 6
-
-//Parametres PWM
-const int freq = 5000;
-const int channel = 0;//Channel PWM choisi
-const int resolution = 8;
-
-const int rapport_cycl = 127;//Moitié de 255
+#define klaxon  11 //Avertisseur sonore sur pin12 (changer si il en faut une autre)
+#define activer_son  6 //Bouton sur pin 6
 
 void setup()
 {
-    //Configuration PWM
-  ledcSetup(channel, freq, resolution);
-  
-  //Attacher au GPIO pour contrôler
-  ledcAttachPin(klaxon, channel);
   
   //Entrees sorties
   pinMode(klaxon, OUTPUT);
-  pinMode(activer_son, INPUT);
+  pinMode(activer_son, INPUT_PULLUP);
 }
 
 void loop()
 {
-  ledcWriteTone(channel, 5000);
-  Serial.println(0);//Rapport cyclique 0, buzzer éteint
-  while(activer_son == 1) //Bouton enfoncé
+  analogWrite(klaxon, 0);//Rapport cyclique 0, buzzer éteint
+  while(digitalRead(activer_son) == 1) //Bouton enfoncé
   {
-    Serial.println(rapport_cycl);
-    digitalWrite(klaxon, HIGH); //Klaxon en marche
+    analogWrite(klaxon, 127); //Klaxon en marche
   }
-
+  analogWrite(klaxon, 0);//Rapport cyclique 0, buzzer éteint
+}
